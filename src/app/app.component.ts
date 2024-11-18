@@ -7,10 +7,9 @@ import { FormComponent } from './form/form.component';
   standalone: true,
   imports: [RouterOutlet, FormComponent],
   template: `
-    <h1>Welcome to {{title}}!</h1>
     <app-form></app-form>
   `,
-  styles: [],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'ClassSchedullingFrontEnd2';

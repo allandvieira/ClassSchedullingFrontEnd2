@@ -1,7 +1,13 @@
 /* app.component.scss */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-/* Seus estilos globais aqui */
-body {
-    font-family: Arial, sans-serif;
-  }
-  
+app-form {
+  width: 100%;
+  max-width: 600px; /* ajuste o tamanho conforme necessário */
+  padding: 20px;
+}

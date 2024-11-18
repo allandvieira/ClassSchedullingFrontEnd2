@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form',
@@ -10,7 +11,7 @@ export class FormComponent implements OnInit {
 
   jsonData: any = null;
 
-  constructor() { }
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {
     const applyBtn = document.getElementById("applyBtn") as HTMLButtonElement;
@@ -23,16 +24,16 @@ export class FormComponent implements OnInit {
         reader.onload = (e: any) => {
           try {
             this.jsonData = JSON.parse(e.target.result);
-            alert("Arquivo JSON carregado com sucesso!");
+            this.toastr.success("Arquivo JSON carregado com sucesso!", "Sucesso!");
             applyBtn.disabled = false;
           } catch (error) {
-            alert("Erro ao ler o arquivo JSON.");
+            this.toastr.error("Erro ao ler o arquivo JSON.", "Erro");
             applyBtn.disabled = true;
           }
         };
         reader.readAsText(file);
       } else {
-        alert("Por favor, selecione um arquivo JSON válido.");
+        this.toastr.warning("Por favor, selecione um arquivo JSON válido.", "Aviso");
         applyBtn.disabled = true;
       }
     });
@@ -43,7 +44,7 @@ export class FormComponent implements OnInit {
     const value = parseInt(Cromossomos.value);
 
     if (value % 2 !== 0) {
-      alert("O valor de Cromossomos deve ser um número par.");
+      this.toastr.warning("O valor de Cromossomos deve ser um número par.", "Aviso");
       Cromossomos.value = ''; // Limpa o campo caso o valor seja ímpar
     }
   }
@@ -53,7 +54,7 @@ export class FormComponent implements OnInit {
     const CromossomosPorElitismo = parseInt((document.getElementById("CromossomosPorElitismo") as HTMLInputElement).value);
 
     if (CromossomosPorElitismo >= Cromossomos) {
-      alert("O valor de Cromossomos por Elitismo deve ser menor que o valor de Cromossomos.");
+      this.toastr.warning("O valor de Cromossomos por Elitismo deve ser menor que o valor de Cromossomos.", "Aviso");
       (document.getElementById("CromossomosPorElitismo") as HTMLInputElement).value = '';
     }
   }
@@ -67,7 +68,7 @@ export class FormComponent implements OnInit {
     const InteracoesSemMelhorias = (document.getElementById("InteracoesSemMelhorias") as HTMLInputElement).value;
 
     if (!ProbabilidadeCruzamento || !ProbabilidadeMutacao || !Cromossomos || !CromossomosPorElitismo || !QuantidadeMaxInteracoes || !InteracoesSemMelhorias) {
-      alert("Por favor, preencha todos os campos.");
+      this.toastr.error("Por favor, preencha todos os campos.", "Erro");
       return;
     }
 
@@ -78,7 +79,7 @@ export class FormComponent implements OnInit {
     };
 
     this.showResultScreen(resultData);
-    alert("Configurações aplicadas com sucesso!");
+    this.toastr.success("Configurações aplicadas com sucesso!", "Sucesso!");
   }
 
   showResultScreen(resultData: any): void {
@@ -112,6 +113,6 @@ export class FormComponent implements OnInit {
   }
 
   exportResults(): void {
-    alert("Funcionalidade para exportar resultados ainda não implementada.");
+    this.toastr.info("Funcionalidade para exportar resultados ainda não implementada.", "Info");
   }
 }
