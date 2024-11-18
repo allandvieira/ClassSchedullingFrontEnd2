@@ -1,0 +1,84 @@
+/* result.component.scss */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    margin: 0;
+    flex-direction: column;
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #d9e5f7;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.result-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#exportBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Estilos específicos para a tela de resultado */
+.result-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.result-container .result-group .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.result-container .result-group .button-container button {
+    margin: 0;
+}

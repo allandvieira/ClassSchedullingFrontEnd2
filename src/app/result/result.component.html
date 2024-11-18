@@ -1,0 +1,24 @@
+<div class="container result-container" id="resultContainer" style="display: none;">
+    <h3>Algoritmos Genéticos - Resultado</h3>
+    <div class="result-group">
+        <label for="bestChromosomeScore">Nota do melhor cromossomo:</label>
+        <input type="text" id="bestChromosomeScore" readonly title="Nota do melhor cromossomo">
+    </div>
+    <div class="result-group">
+        <label for="iterationsCount">Quantidade de iterações:</label>
+        <input type="text" id="iterationsCount" readonly title="Quantidade de iterações">
+    </div>
+    <div class="result-group">
+        <label for="executionTime">Tempo de execução:</label>
+        <input type="text" id="executionTime" readonly title="Tempo de execução">
+    </div>
+    <div class="result-group">
+        <label for="generatedSchedule">Horário gerado:</label>
+        <div id="generatedSchedule" title="Horário gerado"></div>
+    </div>
+    <div class="result-group button-container">
+        <button id="exportBtn" (click)="exportResults()">Salvar</button>
+        <button (click)="convertJsonToTable()">Converter JSON em Tabela</button>
+        <button (click)="closeResults()">Fechar</button>
+    </div>
+</div>
