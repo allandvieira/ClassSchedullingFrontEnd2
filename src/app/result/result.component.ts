@@ -11,7 +11,9 @@ export class ResultComponent implements OnChanges {
   @Input() resultData: any;
   @Output() closeResultsEvent = new EventEmitter<void>();
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService) {
+    this.toastr.toastrConfig.positionClass = 'toast-bottom-right';
+  }
 
   ngOnChanges(): void {
     if (this.resultData) {
@@ -23,14 +25,6 @@ export class ResultComponent implements OnChanges {
     (document.getElementById("bestChromosomeScore") as HTMLInputElement).value = this.resultData.notaDoMaiorCromosso;
     (document.getElementById("iterationsCount") as HTMLInputElement).value = this.resultData.quantidadeDeIterações;
     (document.getElementById("executionTime") as HTMLInputElement).value = this.resultData.tempoDeExecuçãoEmMinutos;
-
-    const generatedSchedule = document.getElementById("generatedSchedule");
-    if (generatedSchedule) {
-      // Convert the response header date to Brasília time
-      const responseDate = new Date();
-      const brasiliaTime = new Date(responseDate.toLocaleString("en-US", { timeZone: "America/Sao_Paulo" }));
-      generatedSchedule.textContent = `Horário gerado: ${brasiliaTime.toLocaleString()}`;
-    }
   }
 
   exportResults(): void {
@@ -76,7 +70,8 @@ export class ResultComponent implements OnChanges {
     }
   }
 
-  closeResults(): void {
-    this.closeResultsEvent.emit();
+  closeForm(): void {
+    const container = document.querySelector(".container") as HTMLDivElement;
+    container.style.display = "none";
   }
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Algoritmos Genéticos - Cadastro</h2>
+    <h2>Algoritmos Genéticos Cadastro</h2>
     <form (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
             <label for="IFormFile">Inserir JSON:</label>
@@ -7,15 +7,15 @@
         </div>
         <div class="form-group">
             <label for="ProbabilidadeCruzamento">Probabilidade de Cruzamento (%):</label>
-            <input type="number" id="ProbabilidadeCruzamento" [(ngModel)]="probabilidadeCruzamento" name="probabilidadeCruzamento" placeholder="Ex: 80" min="0" max="100" class="form-control">
+            <input type="number" id="ProbabilidadeCruzamento" [(ngModel)]="probabilidadeCruzamento" name="probabilidadeCruzamento" placeholder="Ex: 6" min="0" max="100" class="form-control">
         </div>
         <div class="form-group">
             <label for="ProbabilidadeMutacao">Probabilidade de Mutação (%):</label>
-            <input type="number" id="ProbabilidadeMutacao" [(ngModel)]="probabilidadeMutacao" name="probabilidadeMutacao" placeholder="Ex: 5" min="0" max="5" class="form-control">
+            <input type="number" id="ProbabilidadeMutacao" [(ngModel)]="probabilidadeMutacao" name="probabilidadeMutacao" placeholder="Ex: 1" min="0" max="5" class="form-control">
         </div>
         <div class="form-group">
             <label for="Cromossomos">Cromossomos:</label>
-            <input type="number" id="Cromossomos" [(ngModel)]="cromossomos" name="cromossomos" placeholder="Ex: 100" min="2" class="form-control" required>
+            <input type="number" id="Cromossomos" [(ngModel)]="cromossomos" name="cromossomos" placeholder="Ex: 30" min="2" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="CromossomosPorElitismo">Cromossomos por Elitismo:</label>
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="InteracoesSemMelhorias">Iterações Sem Melhorias:</label>
-            <input type="number" id="InteracoesSemMelhorias" [(ngModel)]="interacoesSemMelhorias" name="interacoesSemMelhorias" placeholder="Ex: 50" min="1" class="form-control">
+            <input type="number" id="InteracoesSemMelhorias" [(ngModel)]="interacoesSemMelhorias" name="interacoesSemMelhorias" placeholder="Ex: 100" min="1" class="form-control">
         </div>
         <div class="button-group">
             <button type="submit" id="applyBtn" class="btn btn-primary" disabled>Aplicar</button>

@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
-import { ApiService } from '../api.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ResultComponent } from '../result/result.component';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
+import { CommonModule } from "@angular/common";
+import { ApiService } from "../api.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ResultComponent } from "../result/result.component";
 
 @Component({
-  selector: 'app-form',
+  selector: "app-form",
   standalone: true,
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
-  imports: [CommonModule, FormsModule, ResultComponent]
+  templateUrl: "./form.component.html",
+  styleUrls: ["./form.component.scss"],
+  imports: [CommonModule, FormsModule, ResultComponent],
 })
 export class FormComponent implements OnInit {
   @ViewChild(ResultComponent) resultComponent!: ResultComponent;
@@ -25,7 +25,13 @@ export class FormComponent implements OnInit {
   jsonData: any = null;
   resultData: any = null;
 
-  constructor(private apiService: ApiService, private toastr: ToastrService, private http: HttpClient) {}
+  constructor(
+    private apiService: ApiService,
+    private toastr: ToastrService,
+    private http: HttpClient
+  ) {
+    this.toastr.toastrConfig.positionClass = "toast-bottom-right";
+  }
 
   ngOnInit(): void {}
 
@@ -38,7 +44,10 @@ export class FormComponent implements OnInit {
       reader.onload = (e: any) => {
         try {
           this.jsonData = JSON.parse(e.target.result);
-          this.toastr.success("Arquivo JSON carregado com sucesso!", "Sucesso!");
+          this.toastr.success(
+            "Arquivo JSON carregado com sucesso!",
+            "Sucesso!"
+          );
           if (applyBtn) {
             applyBtn.disabled = false;
           }
@@ -51,7 +60,10 @@ export class FormComponent implements OnInit {
       };
       reader.readAsText(file);
     } else {
-      this.toastr.warning("Por favor, selecione um arquivo JSON válido.", "Aviso");
+      this.toastr.warning(
+        "Por favor, selecione um arquivo JSON válido.",
+        "Aviso"
+      );
       if (applyBtn) {
         applyBtn.disabled = true;
       }
@@ -60,7 +72,10 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (!this.cromossomos || !this.quantidadeMaxInteracoes || !this.jsonData) {
-      this.toastr.warning("Por favor, preencha todos os campos obrigatórios.", "Aviso");
+      this.toastr.warning(
+        "Por favor, preencha todos os campos obrigatórios.",
+        "Aviso"
+      );
       return;
     }
 
@@ -69,8 +84,10 @@ export class FormComponent implements OnInit {
     }
 
     const formData = new FormData();
-    const blob = new Blob([JSON.stringify(this.jsonData)], { type: 'application/json' });
-    formData.append('file', blob, 'disciplinas_professores.json');
+    const blob = new Blob([JSON.stringify(this.jsonData)], {
+      type: "application/json",
+    });
+    formData.append("file", blob, "disciplinas_professores.json");
 
     let url = `https://localhost:7018/ClassSchedulling?Cromossomos=${this.cromossomos}&QuantidadeMaxInteracoes=${this.quantidadeMaxInteracoes}`;
 
@@ -88,33 +105,47 @@ export class FormComponent implements OnInit {
     }
 
     const headers = new HttpHeaders({
-      'Accept': 'application/json'
+      Accept: "application/json",
     });
 
-    this.toastr.info('Aguardando retorno da API...', 'Aguarde');
+    const waitingToast = this.toastr.info(
+      "Aguardando retorno da API...",
+      "Aguarde",
+      {
+        disableTimeOut: true,
+        tapToDismiss: false,
+      }
+    );
 
     this.hideInitialScreen();
     this.showResultScreen();
 
     this.http.post(url, formData, { headers }).subscribe({
       next: (response: any) => {
-        this.toastr.clear();
-        this.toastr.success('Configurações aplicadas com sucesso!', 'Sucesso!');
+        this.toastr.clear(waitingToast.toastId);
+        this.toastr.success("Configurações aplicadas com sucesso!", "Sucesso!");
         this.resultData = response;
         this.updateResultScreen();
       },
       error: (error) => {
-        this.toastr.clear();
-        this.toastr.error('Erro ao aplicar configurações.', 'Erro');
+        this.toastr.clear(waitingToast.toastId);
+        this.toastr.error("Erro ao aplicar configurações.", "Erro");
         this.showInitialScreen();
         this.hideResultScreen();
-      }
+      },
     });
   }
 
   validateElitismCount(): boolean {
-    if (this.cromossomosPorElitismo !== null && (this.cromossomosPorElitismo >= this.cromossomos! || this.cromossomosPorElitismo % 2 !== 0)) {
-      this.toastr.warning("O valor de Cromossomos por Elitismo deve ser menor que o valor de Cromossomos e deve ser um número par.", "Aviso");
+    if (
+      this.cromossomosPorElitismo !== null &&
+      (this.cromossomosPorElitismo >= this.cromossomos! ||
+        this.cromossomosPorElitismo % 2 !== 0)
+    ) {
+      this.toastr.warning(
+        "O valor de Cromossomos por Elitismo deve ser menor que o valor de Cromossomos e deve ser um número par.",
+        "Aviso"
+      );
       this.cromossomosPorElitismo = null;
       return false;
     }
@@ -152,28 +183,28 @@ export class FormComponent implements OnInit {
   }
 
   showResultScreen(): void {
-    const resultContainer = document.getElementById("resultContainer") as HTMLDivElement;
+    const resultContainer = document.getElementById(
+      "resultContainer"
+    ) as HTMLDivElement;
     resultContainer.style.display = "block";
   }
 
   hideResultScreen(): void {
-    const resultContainer = document.getElementById("resultContainer") as HTMLDivElement;
+    const resultContainer = document.getElementById(
+      "resultContainer"
+    ) as HTMLDivElement;
     resultContainer.style.display = "none";
   }
 
   updateResultScreen(): void {
     if (this.resultData) {
-      (document.getElementById("bestChromosomeScore") as HTMLInputElement).value = this.resultData.notaDoMaiorCromosso;
-      (document.getElementById("iterationsCount") as HTMLInputElement).value = this.resultData.quantidadeDeIterações;
-      (document.getElementById("executionTime") as HTMLInputElement).value = this.resultData.tempoDeExecuçãoEmMinutos;
-
-      const generatedSchedule = document.getElementById("generatedSchedule") as HTMLDivElement;
-      generatedSchedule.textContent = ''; // Clear previous content
-
-      // Convert the response header date to Brasília time
-      const responseDate = new Date();
-      const brasiliaTime = new Date(responseDate.toLocaleString("en-US", { timeZone: "America/Sao_Paulo" }));
-      generatedSchedule.textContent = `Horário gerado: ${brasiliaTime.toLocaleString()}`;
+      (
+        document.getElementById("bestChromosomeScore") as HTMLInputElement
+      ).value = this.resultData.notaDoMaiorCromosso;
+      (document.getElementById("iterationsCount") as HTMLInputElement).value =
+        this.resultData.quantidadeDeIterações;
+      (document.getElementById("executionTime") as HTMLInputElement).value =
+        this.resultData.tempoDeExecuçãoEmMinutos;
     }
   }
 

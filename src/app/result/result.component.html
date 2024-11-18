@@ -1,5 +1,6 @@
+<!-- result.component.html -->
 <div class="container result-container" id="resultContainer" style="display: none;">
-    <h3>Algoritmos Genéticos - Resultado</h3>
+    <h3>Algoritmos Genéticos Resultado</h3>
     <div class="result-group">
         <label for="bestChromosomeScore">Nota do melhor cromossomo:</label>
         <input type="text" id="bestChromosomeScore" readonly title="Nota do melhor cromossomo">
@@ -9,16 +10,15 @@
         <input type="text" id="iterationsCount" readonly title="Quantidade de iterações">
     </div>
     <div class="result-group">
-        <label for="executionTime">Tempo de execução:</label>
+        <label for="executionTime">Tempo de execução em minutos:</label>
         <input type="text" id="executionTime" readonly title="Tempo de execução">
     </div>
     <div class="result-group">
-        <label for="generatedSchedule">Horário gerado:</label>
-        <div id="generatedSchedule" title="Horário gerado"></div>
+        <label>Horário gerado:</label>
     </div>
     <div class="result-group button-container">
         <button id="exportBtn" (click)="exportResults()">Salvar</button>
         <button (click)="convertJsonToTable()">Converter JSON em Tabela</button>
-        <button (click)="closeResults()">Fechar</button>
+        <button (click)="closeForm()">Fechar</button>
     </div>
 </div>
