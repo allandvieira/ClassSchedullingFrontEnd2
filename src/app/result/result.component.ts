@@ -71,7 +71,7 @@ export class ResultComponent implements OnChanges {
   }
 
   closeForm(): void {
-    const container = document.querySelector(".container") as HTMLDivElement;
+    const container = document.getElementById("resultContainer") as HTMLDivElement;
     container.style.display = "none";
   }
 }
