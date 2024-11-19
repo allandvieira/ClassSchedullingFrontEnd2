@@ -144,9 +144,9 @@ export class FormComponent implements OnInit {
       return false;
     }
 
-    if (this.probabilidadeMutacao !== null && (this.probabilidadeMutacao < 0 || this.probabilidadeMutacao > 5)) {
+    if (this.probabilidadeMutacao !== null && (this.probabilidadeMutacao < 0 || this.probabilidadeMutacao > 40)) {
       this.toastr.warning(
-        "A probabilidade de mutação deve ser um valor entre 0 e 5.",
+        "A probabilidade de mutação deve ser um valor entre 0 e 40.",
         "Aviso"
       );
       return false;
