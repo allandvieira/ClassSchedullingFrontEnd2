@@ -156,9 +156,9 @@ export class FormComponent implements OnInit {
   }
 
   validateCromossomos(): boolean {
-    if (this.cromossomos !== null && this.cromossomos < 2) {
+    if (this.cromossomos !== null && (this.cromossomos < 2 || this.cromossomos % 2 !== 0)) {
       this.toastr.warning(
-        "O valor de Cromossomos deve ser 2 ou mais.",
+        "O valor de Cromossomos deve ser 2 ou mais e deve ser um número par.",
         "Aviso"
       );
       return false;

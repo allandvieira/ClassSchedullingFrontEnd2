@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
       <label for="CromossomosPorElitismo">Cromossomos por Elitismo:</label>
-      <input type="number" id="CromossomosPorElitismo" [(ngModel)]="cromossomosPorElitismo" name="cromossomosPorElitismo" placeholder="Ex: 2" min="1" max="100" class="form-control" required (blur)="onCromossomosPorElitismoChange()">
+      <input type="number" id="CromossomosPorElitismo" [(ngModel)]="cromossomosPorElitismo" name="cromossomosPorElitismo" placeholder="Ex: 2" min="0" max="100" class="form-control" required (blur)="onCromossomosPorElitismoChange()">
     </div>
     <div class="form-group">
       <label for="QuantidadeMaxInteracoes">Quantidade Máxima de Iterações:</label>
