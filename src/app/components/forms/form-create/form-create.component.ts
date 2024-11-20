@@ -2,19 +2,19 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { CommonModule } from "@angular/common";
-import { ApiService } from "../api.service";
+import { ApiService } from "../../../api.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ResultComponent } from "../result/result.component";
+import { ResultShowComponent } from "../../results/result-show/result-show.component";
 
 @Component({
   selector: "app-form",
   standalone: true,
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.scss"],
-  imports: [CommonModule, FormsModule, ResultComponent],
+  templateUrl: "./form-create.component.html",
+  styleUrls: ["./form-create.component.scss"],
+  imports: [CommonModule, FormsModule, ResultShowComponent],
 })
-export class FormComponent implements OnInit {
-  @ViewChild(ResultComponent) resultComponent!: ResultComponent;
+export class FormCreateComponent implements OnInit {
+  @ViewChild(ResultShowComponent) resultShowComponent!: ResultShowComponent;
 
   probabilidadeCruzamento: number | null = null;
   probabilidadeMutacao: number | null = null;

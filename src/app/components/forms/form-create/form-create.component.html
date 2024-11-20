@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Algoritmos Genéticos Cadastro</h2>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <div class="form-group">
+        <label for="IFormFile">Inserir JSON:</label>
+        <input type="file" id="IFormFile" (change)="onFileChange($event)" accept=".json" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="ProbabilidadeCruzamento">Probabilidade de Cruzamento (%):</label>
+        <input type="number" id="ProbabilidadeCruzamento" [(ngModel)]="probabilidadeCruzamento" name="probabilidadeCruzamento" placeholder="Ex: 80" min="0" max="100" class="form-control" required (blur)="onProbabilidadeCruzamentoChange()">
+      </div>
+      <div class="form-group">
+        <label for="ProbabilidadeMutacao">Probabilidade de Mutação (%):</label>
+        <input type="number" id="ProbabilidadeMutacao" [(ngModel)]="probabilidadeMutacao" name="probabilidadeMutacao" placeholder="Ex: 1" min="0" max="40" class="form-control" required (blur)="onProbabilidadeMutacaoChange()">
+      </div>
+      <div class="form-group">
+        <label for="Cromossomos">Cromossomos:</label>
+        <input type="number" id="Cromossomos" [(ngModel)]="cromossomos" name="cromossomos" placeholder="Ex: 30" min="2" max="100" class="form-control" required (blur)="onCromossomosChange()">
+      </div>
+      <div class="form-group">
+        <label for="CromossomosPorElitismo">Cromossomos por Elitismo:</label>
+        <input type="number" id="CromossomosPorElitismo" [(ngModel)]="cromossomosPorElitismo" name="cromossomosPorElitismo" placeholder="Ex: 2" min="0" max="100" class="form-control" required (blur)="onCromossomosPorElitismoChange()">
+      </div>
+      <div class="form-group">
+        <label for="QuantidadeMaxInteracoes">Quantidade Máxima de Iterações:</label>
+        <input type="number" id="QuantidadeMaxInteracoes" [(ngModel)]="quantidadeMaxInteracoes" name="quantidadeMaxInteracoes" placeholder="Ex: 1000" min="1" max="20000" class="form-control" required (blur)="onQuantidadeMaxInteracoesChange()">
+      </div>
+      <div class="form-group">
+        <label for="InteracoesSemMelhorias">Iterações Sem Melhorias:</label>
+        <input type="number" id="InteracoesSemMelhorias" [(ngModel)]="interacoesSemMelhorias" name="interacoesSemMelhorias" placeholder="Ex: 100" min="1" max="1000" class="form-control" required (blur)="onInteracoesSemMelhoriasChange()">
+      </div>
+      <div class="button-group">
+        <button type="submit" id="applyBtn" class="btn btn-primary">Aplicar</button>
+        <button type="button" class="btn btn-secondary" (click)="resetForm()">Resetar</button>
+        <button type="button" class="btn btn-secondary" (click)="closeForm()">Fechar</button>
+      </div>
+    </form>
+  </div>
+  <app-result [resultData]="resultData"></app-result>
