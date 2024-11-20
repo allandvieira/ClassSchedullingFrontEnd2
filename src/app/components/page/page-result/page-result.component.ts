@@ -1,14 +1,14 @@
 import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Curso, Disciplina } from '../../../models/course.model';
+import { Course, Discipline } from '../../../models/course.model';
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  templateUrl: './result-show.component.html',
-  styleUrls: ['./result-show.component.scss']
+  templateUrl: './page-result.component.html',
+  styleUrls: ['./page-result.component.scss']
 })
-export class ResultShowComponent implements OnChanges {
+export class PageResultComponent implements OnChanges {
   @Input() resultData: any;
   @Output() closeResultsEvent = new EventEmitter<void>();
 
@@ -64,7 +64,7 @@ export class ResultShowComponent implements OnChanges {
     }
   }
 
-  generateHtmlTable(cursos: Curso[]): string {
+  generateHtmlTable(cursos: Course[]): string {
     let html = '';
     cursos.forEach(curso => {
       html += `
@@ -82,7 +82,7 @@ export class ResultShowComponent implements OnChanges {
           </thead>
           <tbody>
       `;
-      curso.disciplinas.forEach((disciplina: Disciplina) => {
+      curso.disciplinas.forEach((disciplina: Discipline) => {
         html += `
           <tr>
             <td>${disciplina.dia}</td>

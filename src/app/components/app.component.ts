@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormCreateComponent } from '../components/forms/form-create/form-create.component';
+import { PageFormComponent } from './page/page-form/page-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormCreateComponent],
+  imports: [RouterOutlet, PageFormComponent],
   template: `
     <app-form></app-form>
   `,

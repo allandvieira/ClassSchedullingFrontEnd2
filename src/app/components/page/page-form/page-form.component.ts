@@ -4,17 +4,17 @@ import { ToastrService } from "ngx-toastr";
 import { CommonModule } from "@angular/common";
 import { ApiService } from "../../../api.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ResultShowComponent } from "../../results/result-show/result-show.component";
+import { PageResultComponent } from "../page-result/page-result.component";
 
 @Component({
   selector: "app-form",
   standalone: true,
-  templateUrl: "./form-create.component.html",
-  styleUrls: ["./form-create.component.scss"],
-  imports: [CommonModule, FormsModule, ResultShowComponent],
+  templateUrl: "./page-form.component.html",
+  styleUrls: ["./page-form.component.scss"],
+  imports: [CommonModule, FormsModule, PageResultComponent],
 })
-export class FormCreateComponent implements OnInit {
-  @ViewChild(ResultShowComponent) resultShowComponent!: ResultShowComponent;
+export class PageFormComponent implements OnInit {
+  @ViewChild(PageResultComponent) pageResultComponent!: PageResultComponent;
 
   probabilidadeCruzamento: number | null = null;
   probabilidadeMutacao: number | null = null;

@@ -1,4 +1,4 @@
-export interface Disciplina {
+export interface Discipline {
     dia: string;
     periodo: string;
     nomeProfessor: string;
@@ -7,7 +7,7 @@ export interface Disciplina {
     ch: number;
   }
   
-  export interface Curso {
+  export interface Course {
     nomeCurso: string;
-    disciplinas: Disciplina[];
+    disciplinas: Discipline[];
   }
