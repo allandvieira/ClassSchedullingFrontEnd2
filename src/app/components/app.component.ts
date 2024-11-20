@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormCreateComponent } from '../../components/forms/form-create/form-create.component';
+import { FormCreateComponent } from '../components/forms/form-create/form-create.component';
 
 @Component({
   selector: 'app-root',
